@@ -1,0 +1,16 @@
+D:\NSTU\долги\рояк\cat-and-mouse\cat-and-mouse\obj\Debug\cat-and-mouse.csproj.AssemblyReference.cache
+D:\NSTU\долги\рояк\cat-and-mouse\cat-and-mouse\obj\Debug\cat-and-mouse.csproj.SuggestedBindingRedirects.cache
+D:\NSTU\долги\рояк\cat-and-mouse\cat-and-mouse\obj\Debug\MainWindow.g.cs
+D:\NSTU\долги\рояк\cat-and-mouse\cat-and-mouse\obj\Debug\App.g.cs
+D:\NSTU\долги\рояк\cat-and-mouse\cat-and-mouse\obj\Debug\cat-and-mouse_MarkupCompile.cache
+D:\NSTU\долги\рояк\cat-and-mouse\cat-and-mouse\obj\Debug\cat-and-mouse_MarkupCompile.lref
+D:\NSTU\долги\рояк\cat-and-mouse\cat-and-mouse\bin\Debug\cat-and-mouse.exe.config
+D:\NSTU\долги\рояк\cat-and-mouse\cat-and-mouse\bin\Debug\cat-and-mouse.exe
+D:\NSTU\долги\рояк\cat-and-mouse\cat-and-mouse\bin\Debug\cat-and-mouse.pdb
+D:\NSTU\долги\рояк\cat-and-mouse\cat-and-mouse\obj\Debug\MainWindow.baml
+D:\NSTU\долги\рояк\cat-and-mouse\cat-and-mouse\obj\Debug\cat-and-mouse.g.resources
+D:\NSTU\долги\рояк\cat-and-mouse\cat-and-mouse\obj\Debug\cat_and_mouse.Properties.Resources.resources
+D:\NSTU\долги\рояк\cat-and-mouse\cat-and-mouse\obj\Debug\cat-and-mouse.csproj.GenerateResource.cache
+D:\NSTU\долги\рояк\cat-and-mouse\cat-and-mouse\obj\Debug\cat-and-mouse.csproj.CoreCompileInputs.cache
+D:\NSTU\долги\рояк\cat-and-mouse\cat-and-mouse\obj\Debug\cat-and-mouse.exe
+D:\NSTU\долги\рояк\cat-and-mouse\cat-and-mouse\obj\Debug\cat-and-mouse.pdb
