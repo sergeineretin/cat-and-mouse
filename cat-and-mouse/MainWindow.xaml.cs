@@ -39,9 +39,14 @@ namespace cat_and_mouse
         Rect mouseHitBox;
         Rect catHitBox;
 
-        int score = 0;
+        int scoreL = 0;
+        int scoreR = 0;
+        int roundCount = 0;
+        int iHidden = 0;
 
-        int roundCount = 3;
+        Key[] leftKeys = { Key.Up, Key.Down, Key.Right, Key.Left};
+        Key[] rightKeys = { Key.W, Key.S, Key.D, Key.A};
+        Key[] temp;
 
         public MainWindow()
         {
@@ -54,7 +59,7 @@ namespace cat_and_mouse
         private void CanvasKeyDown(object sender, KeyEventArgs e)
         {
             // Checking if the key is down for a cat
-            if (e.Key == Key.Left && noLeftM == false)
+            if (e.Key == leftKeys[3] && noLeftM == false)
             {
                 noRightM = noUpM = noDownM = false;
                 goRightM = goUpM = goDownM = false;
@@ -64,7 +69,7 @@ namespace cat_and_mouse
                 mouse.RenderTransform = new RotateTransform(-180, mouse.Width / 2, mouse.Height / 2);
 
             }
-            if (e.Key == Key.Right && noRightM == false) 
+            if (e.Key == leftKeys[2] && noRightM == false) 
             {
                 noLeftM = noUpM= noDownM = false;
                 goLeftM = goUpM = goDownM = false;
@@ -74,7 +79,7 @@ namespace cat_and_mouse
                 mouse.RenderTransform = new RotateTransform(0, mouse.Width / 2, mouse.Height / 2);
 
             }
-            if (e.Key == Key.Up && noUpM == false)
+            if (e.Key == leftKeys[0] && noUpM == false)
             { 
                 noLeftM = noRightM = noDownM = false;
                 goLeftM = goRightM = goDownM = false;
@@ -84,7 +89,7 @@ namespace cat_and_mouse
                 mouse.RenderTransform = new RotateTransform(-90, mouse.Width / 2, mouse.Height / 2);
 
             }
-            if (e.Key == Key.Down && noDownM == false)
+            if (e.Key == leftKeys[1] && noDownM == false)
             { 
                 noLeftM = noRightM = noUpM = false;
                 goLeftM = goRightM = goUpM = false;
@@ -96,7 +101,7 @@ namespace cat_and_mouse
             }
 
            // Checking if key is down for a mouse
-            if (Keyboard.IsKeyDown(Key.A) && noLeftC == false)
+            if (Keyboard.IsKeyDown(rightKeys[3]) && noLeftC == false)
             {
                 noRightC = noUpC = noDownC = false;
                 goRightC = goUpC = goDownC = false;
@@ -106,7 +111,7 @@ namespace cat_and_mouse
                 cat.RenderTransform = new RotateTransform(-180, cat.Width / 2, cat.Height / 2);
 
             }
-            if (Keyboard.IsKeyDown(Key.D) && noRightC == false)
+            if (Keyboard.IsKeyDown(rightKeys[2]) && noRightC == false)
             {
                 noLeftC = noUpC = noDownC = false;
                 goLeftC = goUpC = goDownC = false;
@@ -116,7 +121,7 @@ namespace cat_and_mouse
                 cat.RenderTransform = new RotateTransform(0, cat.Width / 2, cat.Height / 2);
 
             }
-            if (Keyboard.IsKeyDown(Key.W) && noUpC == false)
+            if (Keyboard.IsKeyDown(rightKeys[0]) && noUpC == false)
             {
                 noLeftC = noRightC = noDownC = false;
                 goLeftC = goRightC = goDownC = false;
@@ -126,7 +131,7 @@ namespace cat_and_mouse
                 cat.RenderTransform = new RotateTransform(-90, cat.Width / 2, cat.Height / 2);
 
             }
-            if (Keyboard.IsKeyDown(Key.S) && noDownC == false)
+            if (Keyboard.IsKeyDown(rightKeys[1]) && noDownC == false)
             {
                 noLeftC = noRightC = noUpC = false;
                 goLeftC = goRightC = goUpC = false;
@@ -143,8 +148,9 @@ namespace cat_and_mouse
 
         private void GameLoop(object sender, EventArgs e)
         {
-            leftScore.Content = "Score of the left user: " + score;
-            
+            leftScore.Content = "Score of the left user: " + scoreL;
+            rightScore.Content = "Score of the right user: " + scoreR;
+
             if (goLeftC)
             {
                 Canvas.SetLeft(cat, Canvas.GetLeft(cat) - speedC);
@@ -289,26 +295,69 @@ namespace cat_and_mouse
                 {
                     if (mouseHitBox.IntersectsWith(hitBox) && x.Visibility == Visibility.Visible)
                     {
-
                         x.Visibility = Visibility.Hidden;
-                        score++;
+                        iHidden++;
+
+                        if (roundCount % 2 == 0)
+                            scoreR++;
+                        else
+                            scoreL++;
+
+                        if (iHidden == 93)
+                            NewRound();
+
                     }
                 }
                 if ((string)x.Name == "cat")
                 {
                     if (mouseHitBox.IntersectsWith(hitBox))
                     {
-                        rightScore.Content = "Score of the right user: " + score;
-                        leftScore.Content = "Score of the left user: " + 0;
-                        GameOver("Cat is win!");
+                        NewRound();
+
                     }
                 }
             }
-            if (score == 93)
-            {
-                GameOver("Mouse is win!!! Mouse is collected all of the cheeses!!!");
-            }
         }
+
+        private void NewRound()
+        {
+            temp = leftKeys;
+            leftKeys = rightKeys;
+            rightKeys = temp;
+
+            if (roundCount % 2 == 0)
+            {
+                Canvas.SetLeft(mouse, 91);
+                Canvas.SetTop(mouse, 540);
+                Canvas.SetLeft(cat, 752);
+                Canvas.SetTop(cat, 724);
+                
+            }
+            else 
+            {
+                Canvas.SetLeft(mouse, 752);
+                Canvas.SetTop(mouse, 724);
+                Canvas.SetLeft(cat, 91);
+                Canvas.SetTop(cat, 540);
+            }
+
+            foreach (var x in MyCanvas.Children.OfType<Rectangle>())
+                if ((string)x.Tag == "cheese" && x.Visibility == Visibility.Hidden)
+                    x.Visibility = Visibility.Visible;
+            iHidden = 0;
+
+            roundCount++;
+
+            if (roundCount < 4)
+                round.Content = "ROUND" + (roundCount + 1);
+            else if (scoreL > scoreR)
+                GameOver("Left is win!");
+            else if (scoreR > scoreL)
+                GameOver("Right is win!");
+            else
+                GameOver("Draw!");
+        }
+
         private void GameSetUp()
         { 
             MyCanvas.Focus();

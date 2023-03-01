@@ -17,6 +17,11 @@
             <Rectangle Name="mouse" Width="30" Height="30" Fill="Gray" Canvas.Left="752" Canvas.Top="724" />
             <Rectangle Name="cat" Width="40" Height="40" Fill="#EEAA66" Canvas.Left="91" Canvas.Top="540" />
 
+            <Rectangle Stroke="#2B1E16" StrokeThickness="5" Height="57" Width="244" Canvas.Left="425" Canvas.Top="18" HorizontalAlignment="Center" VerticalAlignment="Top" >
+            </Rectangle>
+
+            <Label Name ="round" Content="ROUND 1" Foreground="#2B1E16" FontSize="40" FontWeight="UltraLight" Canvas.Left="462" Canvas.Top="12" HorizontalAlignment="Left" VerticalAlignment="Center" />
+
             <Rectangle Tag="wall"  Width="247" Height="41" Stroke="#2B1E16" StrokeThickness="5" HorizontalAlignment="Left" VerticalAlignment="Center"/>
             <Rectangle Tag="wall" Fill="Pink" Width="779" Height="20" Stroke="#2B1E16" StrokeThickness="5" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="247"/>
             <Rectangle Tag="wall" Fill="Pink" Width="1300" Height="20" Stroke="#2B1E16" StrokeThickness="5" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Top="764"/>
