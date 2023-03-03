@@ -24,17 +24,16 @@ namespace cat_and_mouse
     /// </summary>
     public partial class MainWindow : Window
     {
-        DispatcherTimer GameTimer = new DispatcherTimer();
+        readonly DispatcherTimer GameTimer = new DispatcherTimer();
 
         bool goLeftC, goRightC, goUpC, goDownC;
         bool noLeftC, noRightC, noUpC, noDownC;
 
         bool goLeftM, goRightM, goUpM, goDownM;
         bool noLeftM, noRightM, noUpM, noDownM;
-
-
-        int speedC = 10;
-        int speedM = 6;
+        
+        readonly int speedC = 10;
+        readonly int speedM = 6;
 
         Rect mouseHitBox;
         Rect catHitBox;
@@ -311,10 +310,8 @@ namespace cat_and_mouse
                 if ((string)x.Name == "cat")
                 {
                     if (mouseHitBox.IntersectsWith(hitBox))
-                    {
                         NewRound();
 
-                    }
                 }
             }
         }
@@ -367,12 +364,16 @@ namespace cat_and_mouse
             GameTimer.Start();
 
 
-            ImageBrush catImage = new ImageBrush();
-            catImage.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/cat.png"));
+            ImageBrush catImage = new ImageBrush
+            {
+                ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/cat.png"))
+            };
             cat.Fill = catImage;
 
-            ImageBrush mouseImage = new ImageBrush();
-            mouseImage.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/mouse.png"));
+            ImageBrush mouseImage = new ImageBrush
+            {
+                ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/mouse.png"))
+            };
             mouse.Fill = mouseImage;
 
         }
